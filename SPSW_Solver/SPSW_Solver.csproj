@@ -1,0 +1,971 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4A7BE7E5-2414-479F-BFC6-916617AA6773}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>SPSW_Solver</RootNamespace>
+    <AssemblyName>SPSW_Solver</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>image.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BasicModel\FrameSegments.cs" />
+    <Compile Include="BasicModel\Level.cs" />
+    <Compile Include="BasicModel\LineElement.cs" />
+    <Compile Include="BasicModel\Material.cs" />
+    <Compile Include="BasicModel\Node.cs" />
+    <Compile Include="BasicModel\PlasticOptions.cs" />
+    <Compile Include="BasicModel\Section.cs" />
+    <Compile Include="Model\SPSW_Model.cs" />
+    <Compile Include="Model\SP_bey.cs" />
+    <Compile Include="Model\VirtualTrussesGroup.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PythonTranslator\OpenSeesTranslator.cs" />
+    <Compile Include="UI\AboutDocsFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\AboutDocsFrm.Designer.cs">
+      <DependentUpon>AboutDocsFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\DialogBaseControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\DialogBaseControl.Designer.cs">
+      <DependentUpon>DialogBaseControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\DialogDeadLoadControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\DialogDeadLoadControl.Designer.cs">
+      <DependentUpon>DialogDeadLoadControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\DialogLateralLoadControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\DialogLateralLoadControl.Designer.cs">
+      <DependentUpon>DialogLateralLoadControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\DialogLateralResistance.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\DialogLateralResistance.Designer.cs">
+      <DependentUpon>DialogLateralResistance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\DialogMaterialBasicDataControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\DialogMaterialBasicDataControl.Designer.cs">
+      <DependentUpon>DialogMaterialBasicDataControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\DialogMaterialBehaviorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\DialogMaterialBehaviorControl.Designer.cs">
+      <DependentUpon>DialogMaterialBehaviorControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\DialogMaterialControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\DialogMaterialControl.Designer.cs">
+      <DependentUpon>DialogMaterialControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\DialogMaterialCurveControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\DialogMaterialCurveControl.Designer.cs">
+      <DependentUpon>DialogMaterialCurveControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\DialogModalAnalysisControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\DialogModalAnalysisControl.Designer.cs">
+      <DependentUpon>DialogModalAnalysisControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\DialogResultControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\DialogResultControl.Designer.cs">
+      <DependentUpon>DialogResultControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\DialogRunControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\DialogRunControl.Designer.cs">
+      <DependentUpon>DialogRunControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\DialogSectionControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\DialogSectionControl.Designer.cs">
+      <DependentUpon>DialogSectionControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\DialogSectionFamiliesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\DialogSectionFamiliesControl.Designer.cs">
+      <DependentUpon>DialogSectionFamiliesControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\DialogSketchControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\DialogSketchControl.Designer.cs">
+      <DependentUpon>DialogSketchControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\DialogSolvingOptions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\DialogSolvingOptions.Designer.cs">
+      <DependentUpon>DialogSolvingOptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\ElasticMaterialCurveControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\ElasticMaterialCurveControl.Designer.cs">
+      <DependentUpon>ElasticMaterialCurveControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\ElasticPPMaterialCurveControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\ElasticPPMaterialCurveControl.Designer.cs">
+      <DependentUpon>ElasticPPMaterialCurveControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\GroupsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\GroupsControl.Designer.cs">
+      <DependentUpon>GroupsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\HystericMaterialCurveControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\HystericMaterialCurveControl.Designer.cs">
+      <DependentUpon>HystericMaterialCurveControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\EditNumModelFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\EditNumModelFrm.Designer.cs">
+      <DependentUpon>EditNumModelFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\InitNumModelfrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\InitNumModelfrm.Designer.cs">
+      <DependentUpon>InitNumModelfrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\MaterialBehaviorGraphControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\MaterialBehaviorGraphControl.Designer.cs">
+      <DependentUpon>MaterialBehaviorGraphControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\MaterialCurveValidationBaseControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\MaterialCurveValidationBaseControl.Designer.cs">
+      <DependentUpon>MaterialCurveValidationBaseControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\MaterialDialogsBaseControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\MaterialDialogsBaseControl.Designer.cs">
+      <DependentUpon>MaterialDialogsBaseControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\ProfilePushoverControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\ProfilePushoverControl.Designer.cs">
+      <DependentUpon>ProfilePushoverControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\Steel01MaterialCurveControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\Steel01MaterialCurveControl.Designer.cs">
+      <DependentUpon>Steel01MaterialCurveControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\TimeHistory_ParametersControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\TimeHistory_ParametersControl.Designer.cs">
+      <DependentUpon>TimeHistory_ParametersControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\ModelSettingDialogControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\ModelSettingDialogControl.Designer.cs">
+      <DependentUpon>ModelSettingDialogControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\AdaptivePushOverControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\AdaptivePushOverControl.Designer.cs">
+      <DependentUpon>AdaptivePushOverControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\LoadCaseControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\LoadCaseControl.Designer.cs">
+      <DependentUpon>LoadCaseControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrameFamilyFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrameFamilyFrm.Designer.cs">
+      <DependentUpon>FrameFamilyFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\MainFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\MainFrm.Designer.cs">
+      <DependentUpon>MainFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\ModalAnalysisReportFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ModalAnalysisReportFrm.Designer.cs">
+      <DependentUpon>ModalAnalysisReportFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ModelMainDimensionsfrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ModelMainDimensionsfrm.Designer.cs">
+      <DependentUpon>ModelMainDimensionsfrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Openfrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Openfrm.Designer.cs">
+      <DependentUpon>Openfrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\PlasticHingeProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\PlasticHingeProperties.Designer.cs">
+      <DependentUpon>PlasticHingeProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\PlateSectionFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\PlateSectionFrm.Designer.cs">
+      <DependentUpon>PlateSectionFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\PushOverCurvefrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\PushOverCurvefrm.Designer.cs">
+      <DependentUpon>PushOverCurvefrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Selection\FrameElementResultfrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Selection\FrameElementResultfrm.Designer.cs">
+      <DependentUpon>FrameElementResultfrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Selection\FrameElementResultEditor.cs" />
+    <Compile Include="UI\Selection\NodeResultEditor.cs" />
+    <Compile Include="UI\Selection\NodesGraphsFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Selection\NodesGraphsFrm.Designer.cs">
+      <DependentUpon>NodesGraphsFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Selection\ObjectProperties.cs" />
+    <Compile Include="UI\Selection\PlasticityReuslts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Selection\PlasticityReuslts.Designer.cs">
+      <DependentUpon>PlasticityReuslts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Selection\RegularFrameElementProperties.cs" />
+    <Compile Include="UI\Selection\SectionEditor.cs" />
+    <Compile Include="UI\Selection\SelectionFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Selection\SelectionFrm.Designer.cs">
+      <DependentUpon>SelectionFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Selection\ShearPlateResultFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Selection\ShearPlateResultFrm.Designer.cs">
+      <DependentUpon>ShearPlateResultFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Selection\SPBeyProperties.cs" />
+    <Compile Include="UI\Selection\SPResultEditor.cs" />
+    <Compile Include="UI\DialogsUserControl\BaseNumModelUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\BaseNumModelUC.Designer.cs">
+      <DependentUpon>BaseNumModelUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\BWHNumModelUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\BWHNumModelUC.Designer.cs">
+      <DependentUpon>BWHNumModelUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\StagesUsersControl\DeadLoadsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\StagesUsersControl\DeadLoadsControl.Designer.cs">
+      <DependentUpon>DeadLoadsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\DPModelUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\DPModelUC.Designer.cs">
+      <DependentUpon>DPModelUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\StagesUsersControl\ElementsFamilyControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\StagesUsersControl\ElementsFamilyControl.Designer.cs">
+      <DependentUpon>ElementsFamilyControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\FibersZeroLengthNumModelUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\FibersZeroLengthNumModelUC.Designer.cs">
+      <DependentUpon>FibersZeroLengthNumModelUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\StagesUsersControl\LateralLoadsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\StagesUsersControl\LateralLoadsControl.Designer.cs">
+      <DependentUpon>LateralLoadsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\StagesUsersControl\LateralLoadSettingsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\StagesUsersControl\LateralLoadSettingsControl.Designer.cs">
+      <DependentUpon>LateralLoadSettingsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\StagesUsersControl\MaterialBehaviorStageControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\StagesUsersControl\MaterialBehaviorStageControl.Designer.cs">
+      <DependentUpon>MaterialBehaviorStageControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\StagesUsersControl\MaterialControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\StagesUsersControl\MaterialControl.Designer.cs">
+      <DependentUpon>MaterialControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\StagesUsersControl\MaterialCurveStageContro1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\StagesUsersControl\MaterialCurveStageContro1.Designer.cs">
+      <DependentUpon>MaterialCurveStageContro1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\StagesUsersControl\MaterialPropertiesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\StagesUsersControl\MaterialPropertiesControl.Designer.cs">
+      <DependentUpon>MaterialPropertiesControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\StagesUsersControl\ModalAnalysisControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\StagesUsersControl\ModalAnalysisControl.Designer.cs">
+      <DependentUpon>ModalAnalysisControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\StagesUsersControl\ModelStageControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\StagesUsersControl\ModelStageControl.Designer.cs">
+      <DependentUpon>ModelStageControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\NonLinearEndNumModelUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\DialogsUserControl\NonLinearEndNumModelUC.Designer.cs">
+      <DependentUpon>NonLinearEndNumModelUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\StagesUsersControl\ResultControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\StagesUsersControl\ResultControl.Designer.cs">
+      <DependentUpon>ResultControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\StagesUsersControl\RunControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\StagesUsersControl\RunControl.Designer.cs">
+      <DependentUpon>RunControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\StagesUsersControl\SectionControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\StagesUsersControl\SectionControl.Designer.cs">
+      <DependentUpon>SectionControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\StagesUsersControl\SketchStageControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\StagesUsersControl\SketchStageControl.Designer.cs">
+      <DependentUpon>SketchStageControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\StagesUsersControl\StageControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\StagesUsersControl\StageControl.Designer.cs">
+      <DependentUpon>StageControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Viewer\BasicViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Viewer\BasicViewer.Designer.cs">
+      <DependentUpon>BasicViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Viewer\DeformationViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Viewer\DeformationViewer.Designer.cs">
+      <DependentUpon>DeformationViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Viewer\DiagramViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Viewer\DiagramViewer.Designer.cs">
+      <DependentUpon>DiagramViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Materialfrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Materialfrm.Designer.cs">
+      <DependentUpon>Materialfrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Viewer\ModelShapeViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Viewer\ModelShapeViewer.Designer.cs">
+      <DependentUpon>ModelShapeViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Viewer\NumericalModelViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Viewer\NumericalModelViewer.Designer.cs">
+      <DependentUpon>NumericalModelViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Viewer\RenderOptions.cs" />
+    <Compile Include="UI\Selection\RunFilesFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Selection\RunFilesFrm.Designer.cs">
+      <DependentUpon>RunFilesFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Viewer\ShearPlateViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Viewer\ShearPlateViewer.Designer.cs">
+      <DependentUpon>ShearPlateViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Viewer\Viewer2D.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Viewer\Viewer2D.Designer.cs">
+      <DependentUpon>Viewer2D.cs</DependentUpon>
+    </Compile>
+    <Content Include="image.ico" />
+    <Content Include="Resources\2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\Data.xml" />
+    <None Include="Resources\about.png" />
+    <None Include="Resources\about-1.png" />
+    <Content Include="Resources\Elastic.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\Help.png" />
+    <Content Include="Resources\Hysteretic.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\ElasticPP.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\ElasticPosNeg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\LoadControlAlgorithm.txt" />
+    <None Include="Resources\INSPECT-SPSW_ABOUT.txt" />
+    <None Include="Resources\INSPECT-SPSW_ACKNOWLEDEMNETS.txt" />
+    <None Include="Resources\INSPECT-SPSW_LICENSE.txt" />
+    <None Include="Resources\INSPECT-SPSW_OPENSEES.txt" />
+    <None Include="Resources\INSPECT-SPSW_ACKNOWLEDEMNETS.html" />
+    <None Include="Resources\INSPECT-SPSW_ABOUT.html" />
+    <None Include="Resources\INSPECT-SPSW_LICENSE.html" />
+    <None Include="Resources\INSPECT-SPSW_OPENSEES.html" />
+    <None Include="Resources\INSPECT-SPSW_READ_ME.html" />
+    <Content Include="Resources\MaterialInfo.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\ModIKModel.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\MotionAlgorithm.txt" />
+    <Content Include="Resources\Organize.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\RunMethods.txt" />
+    <Content Include="Resources\sketch.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Steel01.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\hnet.com-image.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\statistics.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\parabola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\beam.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\WSection2D.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\ModalAnalysisScript.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\next.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\back.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\play.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\lock.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\earthquake.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\plus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\more.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\folder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\eqe2917-fig-0001-m.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\start.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\pause.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\play-button %281%29.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\play-button.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\AboutDocsFrm.resx">
+      <DependentUpon>AboutDocsFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DialogsUserControl\DialogBaseControl.resx">
+      <DependentUpon>DialogBaseControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DialogsUserControl\DialogDeadLoadControl.resx">
+      <DependentUpon>DialogDeadLoadControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DialogsUserControl\DialogLateralLoadControl.resx">
+      <DependentUpon>DialogLateralLoadControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DialogsUserControl\DialogLateralResistance.resx">
+      <DependentUpon>DialogLateralResistance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DialogsUserControl\DialogMaterialBasicDataControl.resx">
+      <DependentUpon>DialogMaterialBasicDataControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DialogsUserControl\DialogMaterialBehaviorControl.resx">
+      <DependentUpon>DialogMaterialBehaviorControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DialogsUserControl\DialogMaterialControl.resx">
+      <DependentUpon>DialogMaterialControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DialogsUserControl\DialogMaterialCurveControl.resx">
+      <DependentUpon>DialogMaterialCurveControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DialogsUserControl\DialogModalAnalysisControl.resx">
+      <DependentUpon>DialogModalAnalysisControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DialogsUserControl\DialogResultControl.resx">
+      <DependentUpon>DialogResultControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DialogsUserControl\DialogRunControl.resx">
+      <DependentUpon>DialogRunControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DialogsUserControl\DialogSectionControl.resx">
+      <DependentUpon>DialogSectionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DialogsUserControl\DialogSectionFamiliesControl.resx">
+      <DependentUpon>DialogSectionFamiliesControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DialogsUserControl\DialogSketchControl.resx">
+      <DependentUpon>DialogSketchControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DialogsUserControl\DialogSolvingOptions.resx">
+      <DependentUpon>DialogSolvingOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DialogsUserControl\ElasticMaterialCurveControl.resx">
+      <DependentUpon>ElasticMaterialCurveControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DialogsUserControl\ElasticPPMaterialCurveControl.resx">
+      <DependentUpon>ElasticPPMaterialCurveControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DialogsUserControl\GroupsControl.resx">
+      <DependentUpon>GroupsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DialogsUserControl\HystericMaterialCurveControl.resx">
+      <DependentUpon>HystericMaterialCurveControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DialogsUserControl\LoadCaseControl.resx">
+      <DependentUpon>LoadCaseControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DialogsUserControl\MaterialBehaviorGraphControl.resx">
+      <DependentUpon>MaterialBehaviorGraphControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DialogsUserControl\MaterialCurveValidationBaseControl.resx">
+      <DependentUpon>MaterialCurveValidationBaseControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DialogsUserControl\MaterialDialogsBaseControl.resx">
+      <DependentUpon>MaterialDialogsBaseControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DialogsUserControl\ProfilePushoverControl.resx">
+      <DependentUpon>ProfilePushoverControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DialogsUserControl\Steel01MaterialCurveControl.resx">
+      <DependentUpon>Steel01MaterialCurveControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DialogsUserControl\TimeHistory_ParametersControl.resx">
+      <DependentUpon>TimeHistory_ParametersControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DialogsUserControl\ModelSettingDialogControl.resx">
+      <DependentUpon>ModelSettingDialogControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DialogsUserControl\AdaptivePushOverControl.resx">
+      <DependentUpon>AdaptivePushOverControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\EditNumModelFrm.resx">
+      <DependentUpon>EditNumModelFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrameFamilyFrm.resx">
+      <DependentUpon>FrameFamilyFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\InitNumModelfrm.resx">
+      <DependentUpon>InitNumModelfrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\MainFrm.resx">
+      <DependentUpon>MainFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ModalAnalysisReportFrm.resx">
+      <DependentUpon>ModalAnalysisReportFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ModelMainDimensionsfrm.resx">
+      <DependentUpon>ModelMainDimensionsfrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Openfrm.resx">
+      <DependentUpon>Openfrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\PlasticHingeProperties.resx">
+      <DependentUpon>PlasticHingeProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\PlateSectionFrm.resx">
+      <DependentUpon>PlateSectionFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\PushOverCurvefrm.resx">
+      <DependentUpon>PushOverCurvefrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Selection\FrameElementResultfrm.resx">
+      <DependentUpon>FrameElementResultfrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Selection\NodesGraphsFrm.resx">
+      <DependentUpon>NodesGraphsFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Selection\PlasticityReuslts.resx">
+      <DependentUpon>PlasticityReuslts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Selection\SelectionFrm.resx">
+      <DependentUpon>SelectionFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Selection\ShearPlateResultFrm.resx">
+      <DependentUpon>ShearPlateResultFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DialogsUserControl\BaseNumModelUC.resx">
+      <DependentUpon>BaseNumModelUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DialogsUserControl\BWHNumModelUC.resx">
+      <DependentUpon>BWHNumModelUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\StagesUsersControl\DeadLoadsControl.resx">
+      <DependentUpon>DeadLoadsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DialogsUserControl\DPModelUC.resx">
+      <DependentUpon>DPModelUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\StagesUsersControl\ElementsFamilyControl.resx">
+      <DependentUpon>ElementsFamilyControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DialogsUserControl\FibersZeroLengthNumModelUC.resx">
+      <DependentUpon>FibersZeroLengthNumModelUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\StagesUsersControl\LateralLoadsControl.resx">
+      <DependentUpon>LateralLoadsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\StagesUsersControl\LateralLoadSettingsControl.resx">
+      <DependentUpon>LateralLoadSettingsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\StagesUsersControl\MaterialBehaviorStageControl.resx">
+      <DependentUpon>MaterialBehaviorStageControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\StagesUsersControl\MaterialControl.resx">
+      <DependentUpon>MaterialControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\StagesUsersControl\MaterialCurveStageContro1.resx">
+      <DependentUpon>MaterialCurveStageContro1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\StagesUsersControl\MaterialPropertiesControl.resx">
+      <DependentUpon>MaterialPropertiesControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\StagesUsersControl\ModalAnalysisControl.resx">
+      <DependentUpon>ModalAnalysisControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\StagesUsersControl\ModelStageControl.resx">
+      <DependentUpon>ModelStageControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DialogsUserControl\NonLinearEndNumModelUC.resx">
+      <DependentUpon>NonLinearEndNumModelUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\StagesUsersControl\ResultControl.resx">
+      <DependentUpon>ResultControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\StagesUsersControl\RunControl.resx">
+      <DependentUpon>RunControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\StagesUsersControl\SectionControl.resx">
+      <DependentUpon>SectionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\StagesUsersControl\SketchStageControl.resx">
+      <DependentUpon>SketchStageControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\StagesUsersControl\StageControl.resx">
+      <DependentUpon>StageControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Viewer\BasicViewer.resx">
+      <DependentUpon>BasicViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Materialfrm.resx">
+      <DependentUpon>Materialfrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Selection\RunFilesFrm.resx">
+      <DependentUpon>RunFilesFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Viewer\Viewer2D.resx">
+      <DependentUpon>Viewer2D.cs</DependentUpon>
+    </EmbeddedResource>
+    <Content Include="OpenSees\lib\tcl8.6\init.tcl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ISections.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OpenSees\bin\OpenSees.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OpenSees\bin\vcruntime140.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\IBeam.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\steel.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\image.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\model.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Section.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\DeadLoad.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\seismic.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\process.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\curve.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\seo-report.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Completed_check.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Error.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\question.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\refresh.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AdamsLair.OpenTK">
+      <Version>1.2.2</Version>
+    </PackageReference>
+    <PackageReference Include="MathNet.Spatial">
+      <Version>0.6.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Office.Interop.Excel">
+      <Version>15.0.4795.1000</Version>
+    </PackageReference>
+    <PackageReference Include="OpenTK.GLControl">
+      <Version>3.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Private.DataContractSerialization">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime.Serialization.Primitives">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="ZedGraph.WinForms">
+      <Version>6.0.0-alpha0001</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AcroPDFLib">
+      <Guid>{05BFD3F1-6319-4F30-B752-C7A22889BCC4}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="AxAcroPDFLib">
+      <Guid>{05BFD3F1-6319-4F30-B752-C7A22889BCC4}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

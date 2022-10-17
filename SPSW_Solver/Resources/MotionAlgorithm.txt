@@ -1,0 +1,32 @@
+if {$ok != 0} {      ;					# if analysis was not successful.
+	# change some analysis parameters to achieve convergence
+	# performance is slower inside this loop
+	#    Time-controlled analysis
+	set ok 0;
+	set controlTime [getTime];
+	while {$controlTime < $TmaxAnalysis && $ok == 0} {
+		set ok [analyze 1 $DtAnalysis]
+		set controlTime [getTime]
+		set ok [analyze 1 $DtAnalysis]
+		if {$ok != 0} {
+			puts "Trying Newton with Initial Tangent .."
+			test NormDispIncr   $Tol 1000  0
+			algorithm Newton -initial
+			set ok [analyze 1 $DtAnalysis]
+			test $TestType $Tol $maxNumIter  0
+			algorithm $algorithmType
+		}
+		if {$ok != 0} {
+			puts "Trying Broyden .."
+			algorithm Broyden 8
+			set ok [analyze 1 $DtAnalysis]
+			algorithm $algorithmType
+		}
+		if {$ok != 0} {
+			puts "Trying NewtonWithLineSearch .."
+			algorithm NewtonLineSearch .8
+			set ok [analyze 1 $DtAnalysis]
+			algorithm $algorithmType
+		}
+	}
+};      # end if ok !0
